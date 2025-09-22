@@ -134,7 +134,15 @@ const Home = () => {
                 Add New Task <i className="fas fa-plus"></i>
               </button>
             </section>
-            {showModel && <Model closeModel={closeModel} />}
+            {showModel && (
+              <Model closeModel={closeModel}>
+                    <input required placeholder="Add title: " type="text"></input>
+                    <input placeholder="details: " type="text"></input>
+                    <button>Add</button>
+                    <button>Submit</button>
+
+              </Model>
+            )}
           </main>
 
           <Footer />

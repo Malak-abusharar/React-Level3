@@ -85,7 +85,28 @@ const Signin = () => {
       <Header />
 
       <main>
-        {showModel && <Model closeModel={closeModel} />}
+        {showModel && <Model closeModel={closeModel}>
+          <input
+          onChange={(eo) => {
+            setresetpass(eo.target.value);
+          }}
+          required
+          placeholder="Email: "
+          type="email"
+        ></input>
+        <button
+          onClick={(eo) => {
+            forgetPassword(eo);
+          }}
+        >
+          Reset password
+        </button>
+        {showSendEmail && (
+          <p className="check-email">
+            Please check your email to reset password
+          </p>
+        )}
+          </Model>}
 
         <form>
           <input
