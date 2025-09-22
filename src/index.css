@@ -1,3 +1,16 @@
+
+.flex {
+  display: flex;
+}
+.mt{
+  margin-top: 1em;
+}
+.mtt{
+  margin-top: 2em;
+}
+.mttt{
+  margin-top: 3em;
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +23,176 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: white;
+
+  font-family: sans-serif;
+
+  text-decoration: none;
+  list-style: none;
+
+  /* letter-spacing: 1px; */
+}
+
+html {
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+header {
+  background-color: #1b1b1b;
+}
+
+h1 {
+  padding: 20px;
+  font-size: 25px;
+}
+
+/* level2 (sign-in - sign-up) */
+form{
+  display: flex;
+  flex-direction: column;
+}
+input{
+  margin-bottom: 18px;
+  padding: 6px 6px;
+  border: 1px solid #607d8b;
+  border-radius: 5px;
+  color:black;
+  font-size: 16px;
+}
+/* form button{
+  padding: 8px 12px;
+  background-color: teal;
+  border:5px;
+  font-size: 16px;
+  border: none;
+} */
+ form button {
+  padding: 8px 15px;
+  background-color: teal;
+  border: none;        /* ما في داعي تكرري border مرتين */
+  font-size: 15px;     /* صغّرت الخط شوي */
+  width: 200px;        /* عرض ثابت */
+  margin: 10px auto;   /* يخلي الزر ييجي بالوسط */
+  display: block;      /* ضروري عشان margin auto يشتغل */
+  border-radius: 5px;  /* شكل أنعم */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.account{
+  font-size: 16px;
+  font-weight: 100;
+  margin-top: 12px;
+}
+.light form p{
+  color: black;
+}
+.account a, .pls a{
+  /* text-decoration: underline; */
+  border-bottom: 3px solid;
+  /* padding-bottom: 10px; */
+  font-size: 600;
+  color: #00c6c6;
+  font-size: 18px;
+}
+form button:active{
+  scale: 0.9;
+  border-radius: 0;
+}
+.light .pls{
+  color:#111;
+}
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  /* border: 5px solid; */
+  width:fit-content;
+  margin: auto;
+}
+.light .pro{
+  color: #111;
+}
+.delete{
+  background-color: red;
+  color: white;
+  border: none;
+  height: 40px;
+  width: 130px;
+}
+button:hover{
+scale:1.1;
+transition: all 0.15s;
+}
+button:active{
+scale: 0.9;
+}
+
+.light .load{
+color: #111;
+}
+.light p {
+  color: #111;
+}
+
+/* .light button,h2,li,option{
+  color:#111;
+}
+.dark button,h2,li,option{
+  color:white;
+} */
+span {
+  animation: heart 2s infinite linear;
+}
+
+@keyframes heart {
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* ==================
+    2. main & footer
+===================== */
+main {
+  color: #1b1b1b;
+
+  min-height: calc(100vh - 128.64px);
+
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+/* theme */
+.dark{
+  background-color: black;
+}
+.dark main{
+  background-color: black;
+    color:white;
 }

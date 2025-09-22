@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,700");
+
+/* لا شيء عام هنا — كل شيء داخل .error-page فقط */
+.error-page {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;               /* يخص صفحة الخطأ فقط */
+  background: #242424;
+  font-family: "Oswald", sans-serif;
+}
+
+/* تأثير التعتيم/التدرّج فوق الخلفية */
+.error-page::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0,0,0,0), rgba(0,0,0,1));
+  opacity: 0.9;
+}
+
+/* محتوى الصفحة في المنتصف */
+.error-page .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 500px;
+  max-width: 90vw;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.error-page h1,
+.error-page p {
+  margin: 0;
+  padding: 0;
+  animation: funnytext 4s ease-in-out infinite;
+}
+
+.error-page h1 {
+  font-size: 16rem;
+  color: rgba(0,0,0,0.3);
+  filter: blur(3px);
+  line-height: 1;
+}
+.error-page p {
+  font-size: 2rem;
+  color: rgba(255,255,255,0.8);
+}
+
+/* خطوط المسح (scanlines) داخل صفحة الخطأ فقط */
+.error-page .scanline,
+.error-page::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: -4px;
+  height: 4px;
+  animation: scanline 8s linear infinite;
+  opacity: .33;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.5) 90%, rgba(0,0,0,0));
+}
+.error-page::before { animation-delay: 4s; }
+
+/* الحركات */
+@keyframes scanline {
+  from { top: -5px; }
+  to   { top: 100%; }
+}
+
+@keyframes funnytext {
+  0%   { color: rgba(255,255,255,0.3); filter: blur(3px); }
+  30%  { color: rgba(255,255,255,0.5); filter: blur(1px); }
+  65%  { color: rgba(255,255,255,0.2); filter: blur(5px); }
+  100% { color: rgba(255,255,255,0.3); filter: blur(3px); }
+}

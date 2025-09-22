@@ -1,0 +1,84 @@
+
+/* ==================
+    3. header of mobile
+===================== */
+.show-when-mobile {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  /* .show-when-mobile {
+  display: block;
+}
+
+.hide-when-mobile {
+  display: none;
+} */
+
+}
+.myheader .malak{
+  background-color: teal;
+  display: felx;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
+}
+
+button.th{
+background-color: #40c4c4;
+color:#fff;
+border:none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+font-size: 15px;
+font-weight: bold;
+transition: all 0.3s ease;
+height: 45px;
+}
+
+button.th:hover{
+background-color: rgb(27, 147, 147);
+transition: all 0.3s ease;
+}
+
+button.th:active{
+background-color: rgb(6, 112, 112);
+transition: all 0.3s ease;
+}
+
+.main-list {
+  padding: 20px;
+  font-size: 19px;
+  position: relative;
+}
+
+.main-link {
+  padding: 8px 15px;
+}
+
+.main-link:hover,  .main-link.active{
+  color: cyan;
+  box-shadow: 0 0 5px cyan;
+  border-radius: 5px;
+}
+
+
+/* ==============================
+     Animation for bigger screen
+=============================== */
+
+@keyframes down {
+  0% {
+    transform: translateY(-100px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+header {
+  animation: down 1s 1;
+}
