@@ -1,5 +1,5 @@
 import React from "react";
-
+import './Model.css';
 const Model = ({ closeModel, children }) => {
   return (
     <div className="parent-of-model">
