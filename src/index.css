@@ -1,34 +1,36 @@
-
 .flex {
   display: flex;
 }
-.mt{
+.mt {
   margin-top: 1em;
 }
-.mtt{
+.mtt {
   margin-top: 2em;
 }
-.mttt{
+.mttt {
   margin-top: 3em;
+}
+.center {
+  text-align: center;
 }
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
 * {
   margin: 0;
   padding: 0;
-  color: white;
+  /* color: white; */
 
   font-family: sans-serif;
 
@@ -59,16 +61,16 @@ h1 {
 }
 
 /* level2 (sign-in - sign-up) */
-form{
+form {
   display: flex;
   flex-direction: column;
 }
-input{
+input {
   margin-bottom: 18px;
   padding: 6px 6px;
   border: 1px solid #607d8b;
   border-radius: 5px;
-  color:black;
+  color: black;
   font-size: 16px;
 }
 /* form button{
@@ -78,28 +80,29 @@ input{
   font-size: 16px;
   border: none;
 } */
- form button {
+form button {
   padding: 8px 15px;
   background-color: teal;
-  border: none;        /* ما في داعي تكرري border مرتين */
-  font-size: 15px;     /* صغّرت الخط شوي */
-  width: 200px;        /* عرض ثابت */
-  margin: 10px auto;   /* يخلي الزر ييجي بالوسط */
-  display: block;      /* ضروري عشان margin auto يشتغل */
-  border-radius: 5px;  /* شكل أنعم */
+  border: none;
+  font-size: 15px;
+  width: 200px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.account{
+.account {
   font-size: 16px;
   font-weight: 100;
   margin-top: 12px;
 }
-.light form p{
+.light form p {
   color: black;
 }
-.account a, .pls a{
+.account a,
+.pls a {
   /* text-decoration: underline; */
   border-bottom: 3px solid;
   /* padding-bottom: 10px; */
@@ -107,45 +110,45 @@ input{
   color: #00c6c6;
   font-size: 18px;
 }
-form button:active{
+form button:active {
   scale: 0.9;
   border-radius: 0;
 }
-.light .pls{
-  color:#111;
+.light .pls {
+  color: #111;
 }
-.profile{
+.profile {
   display: flex;
   flex-direction: column;
   align-items: start;
   /* border: 5px solid; */
-  width:fit-content;
+  width: fit-content;
   margin: auto;
 }
-.light .pro{
+.light .pro {
   color: #111;
 }
-.delete{
+.delete {
   background-color: red;
   color: white;
   border: none;
   height: 40px;
   width: 130px;
 }
-button:hover{
-scale:1.1;
-transition: all 0.15s;
+button:hover {
+  scale: 1.1;
+  transition: all 0.15s;
 }
-button:active{
-scale: 0.9;
+button:active {
+  scale: 0.9;
 }
 
-.light .load{
-color: #111;
-}
-.light p {
+.light .load {
   color: #111;
 }
+/* .light p {
+  color: #111;
+} */
 
 /* .light button,h2,li,option{
   color:#111;
@@ -168,10 +171,9 @@ span {
   }
 }
 
-
-/* ==================
+/*------
     2. main & footer
-===================== */
+------*/
 main {
   color: #1b1b1b;
 
@@ -189,10 +191,59 @@ main {
   text-align: center;
 }
 /* theme */
-.dark{
+.dark {
   background-color: black;
 }
-.dark main{
+/* .dark main{
   background-color: black;
     color:white;
+} */
+
+/*------ Theme Colors (scoped to MAIN only) ------*/
+
+.App.light main,
+.App.light main h1,
+.App.light main h2,
+.App.light main h3,
+.App.light main h4,
+.App.light main h5,
+.App.light main h6,
+.App.light main p,
+.App.light main li,
+.App.light main label,
+.App.light main span {
+  color: #111;
+}
+
+.App.dark main,
+.App.dark main h1,
+.App.dark main h2,
+.App.dark main h3,
+.App.dark main h4,
+.App.dark main h5,
+.App.dark main h6,
+.App.dark main p,
+.App.dark main li,
+.App.dark main label,
+.App.dark main span {
+  color: #fff;
+}
+
+.App.light main {
+  background-color: #f2f2f2;
+}
+.App.dark main {
+  background-color: #000;
+}
+.App.light main select,
+.App.light main textarea {
+  background-color: #fff;
+  color: #111;
+  border-color: #607d8b;
+}
+.App.dark main select,
+.App.dark main textarea {
+  background-color: #333;
+  color: #fff;
+  border-color: #607d8b;
 }

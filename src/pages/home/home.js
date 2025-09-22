@@ -105,29 +105,16 @@ const Home = () => {
             <section className="all-task flex mtt">
             
               <article dir="auto"  className="one-task">
+                <Link to="/edit-task">
                 <h2>New Task</h2>
                 <ul>
                   <li>Sub Task</li>
                   <li>Sub Task</li>
                 </ul>
                 <p className="time">a day ago</p>
+                </Link>
               </article>
-                <article dir="auto" className="one-task">
-                <h2>New Task</h2>
-                <ul>
-                  <li>Sub Task</li>
-                  <li>Sub Task</li>
-                </ul>
-                <p className="time">a day ago</p>
-              </article>
-                <article dir="auto" className="one-task">
-                <h2>تاسك جديد</h2>
-                <ul>
-                  <li>تاسك 1</li>
-                  <li>تاسك 2</li>
-                </ul>
-                <p className="time">a day ago</p>
-              </article>
+    
             </section>
             {/* Add new task */}
             <section className="mt add-task-btn">
