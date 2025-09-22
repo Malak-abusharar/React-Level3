@@ -1,13 +1,13 @@
 import { useState } from "react";
-import Header from "../comp/Header";
-import Footer from "../comp/Footer";
+import Header from "../../comp/Header";
+import Footer from "../../comp/Footer";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { auth } from "../firebase/config";
+import { auth } from "../../firebase/config";
 import "./signin.css";
 import { useNavigate } from "react-router";
 const Signin = () => {
@@ -17,7 +17,6 @@ const Signin = () => {
   const [hasError, sethasError] = useState(false);
   const [firebaseError, setfirebaseError] = useState("");
   const [showSendEmail, setshowSendEmail] = useState(false);
-  const [showform, setshowform] = useState("");
   const [resetpass, setresetpass] = useState("");
   const signInBTN = (eo) => {
     eo.preventDefault();
@@ -56,9 +55,11 @@ const Signin = () => {
         }
       });
   };
+  //Level 3
+    const [showModel, setshowModel] = useState(false);
   const forgetPassword = (eo) => {
     eo.preventDefault();
-
+setshowModel(true)
     sendPasswordResetEmail(auth, resetpass)
       .then(() => {
         // Password reset email sent!
@@ -80,10 +81,11 @@ const Signin = () => {
       <Header />
 
       <main>
-        <form className={`forget-password ${showform}`}>
+      {showModel && <div className="parent-of-model">
+        <form className={`model`}>
           <div
             onClick={() => {
-              setshowform("");
+              setshowModel(false);
             }}
             className="close"
           >
@@ -110,6 +112,7 @@ const Signin = () => {
             </p>
           )}
         </form>
+        </div>}  
 
         <form>
           <input
@@ -138,7 +141,7 @@ const Signin = () => {
           </p>
           <p
             onClick={() => {
-              setshowform("show-forget-pass");
+              setshowModel(true);
             }}
             className="forget-pass"
           >
