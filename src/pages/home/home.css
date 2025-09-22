@@ -1,6 +1,6 @@
 /*------ Option (fitered data) ------*/
 .home .parent-of-btns{
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 .home .parent-of-btns button{
   background-color: #4876c4; 
@@ -17,7 +17,7 @@ padding: 6px 10px;
 }
 /*------  Show all task ------*/
 .home .all-task{
-  border: 2px solid red;
+  /* border: 2px solid red; */
   justify-content: center;
   flex-wrap: wrap;
 }

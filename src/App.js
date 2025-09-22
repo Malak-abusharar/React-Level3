@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home/home";
 import About from "./pages/About";
@@ -16,8 +15,7 @@ function App() {
     <div className={`App ${theme}`}>
       <Routes>
         <Route path="/" element={<Home />} />
-        
-  <Route path="/signin" element={<Signin />} />
+          <Route path="/signin" element={<Signin />} />
   <Route path="/about" element={<About />} />
           <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile />} />
