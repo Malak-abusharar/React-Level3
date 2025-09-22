@@ -10,6 +10,7 @@ import {
 import { auth } from "../../firebase/config";
 import "./signin.css";
 import { useNavigate } from "react-router";
+import Model from "pages/shared/Model";
 const Signin = () => {
   let navigate = useNavigate();
   const [email, setemail] = useState("");
@@ -55,11 +56,11 @@ const Signin = () => {
         }
       });
   };
-  //Level 3
-    const [showModel, setshowModel] = useState(false);
+  // Level 3
+  const [showModel, setshowModel] = useState(false);
   const forgetPassword = (eo) => {
     eo.preventDefault();
-setshowModel(true)
+    setshowModel(true);
     sendPasswordResetEmail(auth, resetpass)
       .then(() => {
         // Password reset email sent!
@@ -72,6 +73,9 @@ setshowModel(true)
         console.log(errorMessage);
       });
   };
+  const closeModel = () => {
+    setshowModel(false);
+  };
 
   return (
     <div>
@@ -81,38 +85,7 @@ setshowModel(true)
       <Header />
 
       <main>
-      {showModel && <div className="parent-of-model">
-        <form className={`model`}>
-          <div
-            onClick={() => {
-              setshowModel(false);
-            }}
-            className="close"
-          >
-            X{" "}
-          </div>
-          <input
-            onChange={(eo) => {
-              setresetpass(eo.target.value);
-            }}
-            required
-            placeholder="Email: "
-            type="email"
-          ></input>
-          <button
-            onClick={(eo) => {
-              forgetPassword(eo);
-            }}
-          >
-            Reset password
-          </button>
-          {showSendEmail && (
-            <p className="check-email">
-              Please check your email to reset password
-            </p>
-          )}
-        </form>
-        </div>}  
+        {showModel && <Model closeModel={closeModel} />}
 
         <form>
           <input

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../comp/Header";
 import Footer from "../../comp/Footer";
 // import MainContent from '../comp/MainContent'
@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { sendEmailVerification } from "firebase/auth";
 //level 3
+import Model from "pages/shared/Model";
 import "./home.css";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -19,6 +20,15 @@ const Home = () => {
     });
   };
 
+  // Level 3
+  const [showModel, setshowModel] = useState(false);
+  const forgetPassword = (eo) => {
+    eo.preventDefault();
+    setshowModel(true);
+  };
+  const closeModel = () => {
+    setshowModel(false);
+  };
   if (loading) {
     return (
       <div>
@@ -103,23 +113,28 @@ const Home = () => {
             </section>
             {/* Show all task */}
             <section className="all-task flex mtt">
-            
-              <article dir="auto"  className="one-task">
+              <article dir="auto" className="one-task">
                 <Link to="/edit-task">
-                <h2>New Task</h2>
-                <ul>
-                  <li>Sub Task</li>
-                  <li>Sub Task</li>
-                </ul>
-                <p className="time">a day ago</p>
+                  <h2>New Task</h2>
+                  <ul>
+                    <li>Sub Task</li>
+                    <li>Sub Task</li>
+                  </ul>
+                  <p className="time">a day ago</p>
                 </Link>
               </article>
-    
             </section>
             {/* Add new task */}
             <section className="mt add-task-btn">
-              <button>Add New Task <i className="fas fa-plus"></i></button>
+              <button
+                onClick={() => {
+                  setshowModel(true);
+                }}
+              >
+                Add New Task <i className="fas fa-plus"></i>
+              </button>
             </section>
+            {showModel && <Model closeModel={closeModel} />}
           </main>
 
           <Footer />
