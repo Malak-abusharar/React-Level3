@@ -10,7 +10,6 @@ import { sendEmailVerification } from "firebase/auth";
 //level 3
 import Model from "pages/shared/Model";
 import "./home.css";
-import { doc, setDoc } from "firebase/firestore";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   const sendAgain = () => {
@@ -22,6 +21,13 @@ const Home = () => {
 
   // Level 3
   const [showModel, setshowModel] = useState(false);
+  const [array, setarray] = useState([]);
+  const [subTask, setsubTask] = useState("");
+  const addBTN = () => {
+  array.push(subTask)
+  console.log(array)
+  setsubTask("")
+}
   const forgetPassword = (eo) => {
     eo.preventDefault();
     setshowModel(true);
@@ -141,17 +147,33 @@ const Home = () => {
                     <input placeholder="Add title :" type="text" />
 
                     <div className="details-row flex">
-                      <input placeholder="details:" type="text" />
+                      <input onChange={(eo) => {
+                        setsubTask(eo.target.value)
+                      }
+                      }
+                       placeholder="details:" type="text" 
+                       value={subTask}/>
                       <button
                         onClick={(eo) => {
                           eo.preventDefault();
+                          addBTN()
                         }}
                         className="add-btn"
                       >
                         add
                       </button>
                     </div>
-
+                  <ul>
+                      {array.map((item) => (
+                        <li key={item}>{item}</li>
+                        
+                      )
+                      )}
+                  </ul>
+{/* <ul>
+  <li>Html</li>
+  <li>CSS</li>
+</ul> */}
                     <button>Submit</button>
                   </div>
                 </div>

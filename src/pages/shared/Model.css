@@ -33,6 +33,7 @@
       /* scale: 1; */
 transform: translateY(0) ;
 animation: mymove 0.5s;
+overflow: scroll;
 }
 
 @keyframes mymove {
