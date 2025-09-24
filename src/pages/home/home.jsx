@@ -10,9 +10,9 @@ import { sendEmailVerification } from "firebase/auth";
 //level 3
 import Model from "pages/shared/Model";
 import "./home.css";
+import { doc, setDoc } from "firebase/firestore";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
-  console.log(user);
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
       // Email verification sent!
@@ -136,11 +136,25 @@ const Home = () => {
             </section>
             {showModel && (
               <Model closeModel={closeModel}>
-                    <input required placeholder="Add title: " type="text"></input>
-                    <input placeholder="details: " type="text"></input>
-                    <button>Add</button>
-                    <button>Submit</button>
+                <div className="task-modal">
+                  <div className="task-modal-inner">
+                    <input placeholder="Add title :" type="text" />
 
+                    <div className="details-row flex">
+                      <input placeholder="details:" type="text" />
+                      <button
+                        onClick={(eo) => {
+                          eo.preventDefault();
+                        }}
+                        className="add-btn"
+                      >
+                        add
+                      </button>
+                    </div>
+
+                    <button>Submit</button>
+                  </div>
+                </div>
               </Model>
             )}
           </main>
