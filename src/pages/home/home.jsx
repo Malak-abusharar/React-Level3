@@ -3,13 +3,14 @@ import Header from "../../comp/Header";
 import Footer from "../../comp/Footer";
 // import MainContent from '../comp/MainContent'
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/config";
+import { auth, db } from "../../firebase/config";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { sendEmailVerification } from "firebase/auth";
 //level 3
 import Model from "pages/shared/Model";
 import "./home.css";
+import { doc, setDoc } from "firebase/firestore";
 const Home = () => {
   const [user, loading, error] = useAuthState(auth);
   const sendAgain = () => {
@@ -24,10 +25,10 @@ const Home = () => {
   const [array, setarray] = useState([]);
   const [subTask, setsubTask] = useState("");
   const addBTN = () => {
-  array.push(subTask)
-  console.log(array)
-  setsubTask("")
-}
+    array.push(subTask);
+    console.log(array);
+    setsubTask("");
+  };
   const forgetPassword = (eo) => {
     eo.preventDefault();
     setshowModel(true);
@@ -147,34 +148,48 @@ const Home = () => {
                     <input placeholder="Add title :" type="text" />
 
                     <div className="details-row flex">
-                      <input onChange={(eo) => {
-                        setsubTask(eo.target.value)
-                      }
-                      }
-                       placeholder="details:" type="text" 
-                       value={subTask}/>
+                      <input
+                        onChange={(eo) => {
+                          setsubTask(eo.target.value);
+                        }}
+                        placeholder="details:"
+                        type="text"
+                        value={subTask}
+                      />
                       <button
                         onClick={(eo) => {
                           eo.preventDefault();
-                          addBTN()
+                          addBTN();
                         }}
                         className="add-btn"
                       >
                         add
                       </button>
                     </div>
-                  <ul>
+                    <ul>
                       {array.map((item) => (
                         <li key={item}>{item}</li>
-                        
-                      )
-                      )}
-                  </ul>
-{/* <ul>
+                      ))}
+                    </ul>
+                    {/* <ul>
   <li>Html</li>
   <li>CSS</li>
 </ul> */}
-                    <button>Submit</button>
+                    <button
+                      onClick={async (eo) => {
+                        eo.preventDefault();
+                        console.log("waiting");
+                        await setDoc(doc(db, "Malak", "test123"), {
+                          userName: "Malak",
+                          age: 23,
+                          married: false,
+                          websites: ["react.dev", "react.com"],
+                        });
+                        console.log("done");
+                      }}
+                    >
+                      Submit
+                    </button>
                   </div>
                 </div>
               </Model>
