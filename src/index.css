@@ -223,7 +223,7 @@ main {
 .App.dark main h5,
 .App.dark main h6,
 .App.dark main p,
-.App.dark main li,
+/* .App.dark main li, */
 .App.dark main label,
 .App.dark main span {
   color: #fff;

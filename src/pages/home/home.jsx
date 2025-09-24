@@ -12,7 +12,13 @@ import Model from "pages/shared/Model";
 import "./home.css";
 import { doc, setDoc } from "firebase/firestore";
 const Home = () => {
+
+  // console.log(typeof(new Date().getTime()))
+
+
   const [user, loading, error] = useAuthState(auth);
+    // console.log(user.uid);
+  // console.log(user);
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
       // Email verification sent!
@@ -22,13 +28,16 @@ const Home = () => {
 
   // Level 3
   const [showModel, setshowModel] = useState(false);
-  const [array, setarray] = useState([]);
-  const [subTask, setsubTask] = useState("");
-  const addBTN = () => {
-    array.push(subTask);
-    console.log(array);
-    setsubTask("");
-  };
+    const [array, setarray] = useState([]);
+    const [subTask, setsubTask] = useState("");
+        const [taskTitle, settaskTitle] = useState("");
+
+const addBTN = () => {
+  array.push(subTask)
+  console.log(array)
+  setsubTask("")
+}
+
   const forgetPassword = (eo) => {
     eo.preventDefault();
     setshowModel(true);
@@ -145,51 +154,54 @@ const Home = () => {
               <Model closeModel={closeModel}>
                 <div className="task-modal">
                   <div className="task-modal-inner">
-                    <input placeholder="Add title :" type="text" />
+                    <input  value={taskTitle}
+                    onChange={(eo) => {
+                        settaskTitle(eo.target.value)
+                      }
+                      }
+                    placeholder="Add title :" type="text" />
 
                     <div className="details-row flex">
                       <input
-                        onChange={(eo) => {
-                          setsubTask(eo.target.value);
-                        }}
-                        placeholder="details:"
-                        type="text"
-                        value={subTask}
-                      />
-                      <button
-                        onClick={(eo) => {
-                          eo.preventDefault();
-                          addBTN();
-                        }}
-                        className="add-btn"
-                      >
-                        add
-                      </button>
+                       onChange={(eo) => {
+                        setsubTask(eo.target.value)
+                      }
+                      }
+                      placeholder="details:"
+                       type="text" 
+                       value={subTask}/>
+                      <button onClick={(eo) => {
+                        eo.preventDefault();
+                        addBTN()
+                      }
+                      }
+                      className="add-btn">add</button>
                     </div>
                     <ul>
-                      {array.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
+                    {array.map((item) => (
+                      <li key={item}>{item}</li>
+                    )
+                    )}
                     </ul>
                     {/* <ul>
-  <li>Html</li>
-  <li>CSS</li>
-</ul> */}
-                    <button
-                      onClick={async (eo) => {
-                        eo.preventDefault();
-                        console.log("waiting");
-                        await setDoc(doc(db, "Malak", "test123"), {
-                          userName: "Malak",
-                          age: 23,
-                          married: false,
-                          websites: ["react.dev", "react.com"],
-                        });
-                        console.log("done");
-                      }}
-                    >
-                      Submit
-                    </button>
+                      <li>js</li>
+                      <li>react</li>
+                    </ul> */}
+                    <button onClick={async(eo) => {
+                      eo.preventDefault();
+                      console.log("waiting")
+                      // console.log("Connected project ID:", auth.app.options.projectId);
+const taskId =  new Date().getTime()
+                      await setDoc(doc(db, user.uid, `${taskId}`), {
+title: taskTitle,
+details: array,
+id: taskId
+});
+console.log("done")
+settaskTitle("")
+setarray([])
+                    }
+                    }>Submit</button>
                   </div>
                 </div>
               </Model>
