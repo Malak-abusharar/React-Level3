@@ -1,10 +1,10 @@
 import Model from 'pages/shared/Model';
 import React from 'react';
 
-const HomeModel = ({titleInput, detailsInput, addBTN, submitBTN,
-   closeModel, taskTitle, subTask, array, showLoading}) => {
+const HomeModel = ({addBTN, closeModel, titleInput, 
+  detailsInput, submitBTN, taskTitle, subTask, array, showLoading  }) => {
   return (
-    <Model closeModel={closeModel}>
+      <Model closeModel={closeModel}>
                 <div className="task-modal">
                   <div className="task-modal-inner">
                     <input

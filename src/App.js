@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/home/home";
 import EditTask from "./pages/edit-task/edit-task";

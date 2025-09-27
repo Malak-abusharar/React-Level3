@@ -34,6 +34,7 @@
   width: 300px;
   height: 180px;
   transition: 0.2s;
+  position: relative;
 }
 .home .all-task .one-task:hover {
   border-left: 8px solid antiquewhite;
@@ -53,9 +54,13 @@
   margin: 0 15px;
 }
 .home .all-task .one-task .time {
-  font-size: 10px;
-  text-align: right;
-  margin-right: 8px;
+  font-size: 12px;
+  font-weight: normal;
+  /* text-align: right; */
+  /* margin-right: 8px; */
+  position: absolute;
+  bottom: 5px;
+  right: 8px;
 }
 /*------ 3- Add new task ------*/
 .home .add-task-btn button {
