@@ -163,3 +163,35 @@
   word-break: break-word;
   text-align: left;
 }
+/**** Loading ***/
+.my-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-top: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin: auto;
+}
+
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/***** success message**/
+.home .task-messge{
+  background-color: whitesmoke;
+  font-size: 18px;
+  color:#333;
+  padding: 3px 5px;
+  font-weight: normal;
+  border-radius: 5px;
+  position: fixed;
+  top:100px;
+  transition: 1s;
+}
+.home .fa-circle-check{
+  color:teal;
+  margin-left: 5px;
+}

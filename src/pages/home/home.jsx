@@ -31,6 +31,9 @@ const Home = () => {
     const [array, setarray] = useState([]);
     const [subTask, setsubTask] = useState("");
         const [taskTitle, settaskTitle] = useState("");
+        const [showLoading, setshowLoading] = useState(false);
+        const [showMessge, setshowMessge] = useState(false);
+
 
 const addBTN = () => {
   array.push(subTask)
@@ -189,7 +192,8 @@ const addBTN = () => {
                     </ul> */}
                     <button onClick={async(eo) => {
                       eo.preventDefault();
-                      console.log("waiting")
+                      setshowLoading(true)
+                      // console.log("waiting")
                       // console.log("Connected project ID:", auth.app.options.projectId);
 const taskId =  new Date().getTime()
                       await setDoc(doc(db, user.uid, `${taskId}`), {
@@ -197,15 +201,27 @@ title: taskTitle,
 details: array,
 id: taskId
 });
-console.log("done")
+// console.log("done")
+setshowLoading(false)
 settaskTitle("")
 setarray([])
-                    }
-                    }>Submit</button>
+setshowModel(false)
+setshowMessge(true)
+setTimeout(() => {
+setshowMessge(false)
+},5000
+)
+                    } }>
+                      {/* Submit */}
+                      {showLoading? <div className="my-spinner"></div>: "submit"   }
+               </button>
                   </div>
                 </div>
               </Model>
             )}
+            <p style={{  right:showMessge? "5vw" : "-100vw"}}
+             className="task-messge">
+              Task added successfully<i className="fa-solid fa-circle-check"></i></p>
           </main>
 
           <Footer />
