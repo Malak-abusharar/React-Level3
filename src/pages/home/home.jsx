@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { sendEmailVerification } from "firebase/auth";
 //level 3
-import Model from "pages/shared/Model";
 import "./home.css";
 import { doc, setDoc } from "firebase/firestore";
 import HomeModel from "./HomeModel";
+import AllTasksSection from "./AllTasksSection";
 const Home = () => {
   // console.log(typeof(new Date().getTime()))
 
   const [user, loading, error] = useAuthState(auth);
+
   // console.log(user.uid);
   // console.log(user);
   const sendAgain = () => {
@@ -159,18 +160,7 @@ const Home = () => {
               </select>
             </section>
             {/* Show all task */}
-            <section className="all-task flex mtt">
-              <article dir="auto" className="one-task">
-                <Link to="/edit-task">
-                  <h2>New Task</h2>
-                  <ul>
-                    <li>Sub Task</li>
-                    <li>Sub Task</li>
-                  </ul>
-                  <p className="time">a day ago</p>
-                </Link>
-              </article>
-            </section>
+  <AllTasksSection user={user}/>
             {/* Add new task */}
             <section className="mt add-task-btn">
               <button
