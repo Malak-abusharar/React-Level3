@@ -37,7 +37,9 @@ const Home = () => {
   //Function of model
   const addBTN = (eo) => {
     eo.preventDefault();
+    if(!array.includes(subTask)){
     array.push(subTask);
+    }
     console.log(array);
     setsubTask("");
   };
