@@ -1,24 +1,26 @@
+import React from 'react';
 import { useCollection } from "react-firebase-hooks/firestore";
 import { collection } from "firebase/firestore";
-import { db } from "../../firebase/config";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { db } from '../../firebase/config';
+import Moment from 'react-moment';
 
-const AllTasksSection = ({ user }) => {
+const AllTasksSection = ({user}) => {
   const [value, loading, error] = useCollection(collection(db, user.uid));
-  if (loading) {
+
+    if (loading) {
     return (
-      <main className="load">
-        <p>Loading.....</p>
-      </main>
+          <main className="load">
+          <p>Loading.....</p>
+        </main>
     );
   }
   if (error) {
     return (
-      <div>
-        <p>Error</p>
-      </div>
+      <h1>Error</h1>
     );
   }
+
   if(value){
   return (
     <section className="all-task flex mtt">
@@ -26,12 +28,23 @@ const AllTasksSection = ({ user }) => {
       return(
           <article dir="auto" className="one-task">
         <Link to="/edit-task">
-          <h2>New Task</h2>
+          <h2>{item.data().title}</h2>
           <ul>
-            <li>Sub Task</li>
-            <li>Sub Task</li>
+            {/* <li>Sub Task</li>
+            <li>Sub Task</li> */}
+            {item.data().details.map((item,index) => {
+              if(index < 2){
+              return(
+                <li>{item}</li> 
+              )
+            }else{
+              return false
+            }
+            }
+            )}
           </ul>
           <p className="time">a day ago</p>
+        
         </Link>
       </article>
       )
@@ -39,7 +52,7 @@ const AllTasksSection = ({ user }) => {
     )}
     </section>
   );
-  }
-};
+}
+}
 
 export default AllTasksSection;
