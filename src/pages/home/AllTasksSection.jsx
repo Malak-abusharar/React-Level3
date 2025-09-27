@@ -43,7 +43,7 @@ const AllTasksSection = ({user}) => {
             }
             )}
           </ul>
-          <p className="time">a day ago</p>
+          <p className="time"><Moment className="pro" fromNow date={item.data().id} /></p>
         
         </Link>
       </article>
