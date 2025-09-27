@@ -11,13 +11,12 @@ import { sendEmailVerification } from "firebase/auth";
 import Model from "pages/shared/Model";
 import "./home.css";
 import { doc, setDoc } from "firebase/firestore";
+import HomeModel from "./HomeModel";
 const Home = () => {
-
   // console.log(typeof(new Date().getTime()))
 
-
   const [user, loading, error] = useAuthState(auth);
-    // console.log(user.uid);
+  // console.log(user.uid);
   // console.log(user);
   const sendAgain = () => {
     sendEmailVerification(auth.currentUser).then(() => {
@@ -28,26 +27,53 @@ const Home = () => {
 
   // Level 3
   const [showModel, setshowModel] = useState(false);
-    const [array, setarray] = useState([]);
-    const [subTask, setsubTask] = useState("");
-        const [taskTitle, settaskTitle] = useState("");
-        const [showLoading, setshowLoading] = useState(false);
-        const [showMessge, setshowMessge] = useState(false);
+  const [array, setarray] = useState([]);
+  const [subTask, setsubTask] = useState("");
+  const [taskTitle, settaskTitle] = useState("");
+  const [showLoading, setshowLoading] = useState(false);
+  const [showMessge, setshowMessge] = useState(false);
 
-
-const addBTN = () => {
-  array.push(subTask)
-  console.log(array)
-  setsubTask("")
-}
-
-  const forgetPassword = (eo) => {
+  //------------------
+  //Function of model
+  const addBTN = (eo) => {
     eo.preventDefault();
-    setshowModel(true);
+    array.push(subTask);
+    console.log(array);
+    setsubTask("");
   };
   const closeModel = () => {
     setshowModel(false);
   };
+  const titleInput = (eo) => {
+    settaskTitle(eo.target.value);
+  };
+
+  const detailsInput = (eo) => {
+    setsubTask(eo.target.value);
+  };
+
+  const submitBTN = async (eo) => {
+    eo.preventDefault();
+    setshowLoading(true);
+    // console.log("waiting")
+    // console.log("Connected project ID:", auth.app.options.projectId);
+    const taskId = new Date().getTime();
+    await setDoc(doc(db, user.uid, `${taskId}`), {
+      title: taskTitle,
+      details: array,
+      id: taskId,
+    });
+    // console.log("done")
+    setshowLoading(false);
+    settaskTitle("");
+    setarray([]);
+    setshowModel(false);
+    setshowMessge(true);
+    setTimeout(() => {
+      setshowMessge(false);
+    }, 3000);
+  };
+
   if (loading) {
     return (
       <div>
@@ -154,74 +180,25 @@ const addBTN = () => {
               </button>
             </section>
             {showModel && (
-              <Model closeModel={closeModel}>
-                <div className="task-modal">
-                  <div className="task-modal-inner">
-                    <input  value={taskTitle}
-                    onChange={(eo) => {
-                        settaskTitle(eo.target.value)
-                      }
-                      }
-                    placeholder="Add title :" type="text" />
-
-                    <div className="details-row flex">
-                      <input
-                       onChange={(eo) => {
-                        setsubTask(eo.target.value)
-                      }
-                      }
-                      placeholder="details:"
-                       type="text" 
-                       value={subTask}/>
-                      <button onClick={(eo) => {
-                        eo.preventDefault();
-                        addBTN()
-                      }
-                      }
-                      className="add-btn">add</button>
-                    </div>
-                    <ul>
-                    {array.map((item) => (
-                      <li key={item}>{item}</li>
-                    )
-                    )}
-                    </ul>
-                    {/* <ul>
-                      <li>js</li>
-                      <li>react</li>
-                    </ul> */}
-                    <button onClick={async(eo) => {
-                      eo.preventDefault();
-                      setshowLoading(true)
-                      // console.log("waiting")
-                      // console.log("Connected project ID:", auth.app.options.projectId);
-const taskId =  new Date().getTime()
-                      await setDoc(doc(db, user.uid, `${taskId}`), {
-title: taskTitle,
-details: array,
-id: taskId
-});
-// console.log("done")
-setshowLoading(false)
-settaskTitle("")
-setarray([])
-setshowModel(false)
-setshowMessge(true)
-setTimeout(() => {
-setshowMessge(false)
-},5000
-)
-                    } }>
-                      {/* Submit */}
-                      {showLoading? <div className="my-spinner"></div>: "submit"   }
-               </button>
-                  </div>
-                </div>
-              </Model>
+              <HomeModel
+                closeModel={closeModel}
+                detailsInput={detailsInput}
+                addBTN={addBTN}
+                submitBTN={submitBTN}
+                titleInput={titleInput}
+                taskTitle={taskTitle}
+                subTask={subTask}
+                array={array}
+                showLoading={showLoading}
+              />
             )}
-            <p style={{  right:showMessge? "5vw" : "-100vw"}}
-             className="task-messge">
-              Task added successfully<i className="fa-solid fa-circle-check"></i></p>
+            <p
+              style={{ right: showMessge ? "5vw" : "-100vw" }}
+              className="task-messge"
+            >
+              Task added successfully
+              <i className="fa-solid fa-circle-check"></i>
+            </p>
           </main>
 
           <Footer />
