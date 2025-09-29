@@ -16,9 +16,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<Signin />} />
-        <Route path="/edit-task" element={<EditTask />} />
+        <Route path="/edit-task/:stringId" element={<EditTask />} />
         <Route path="/about" element={<About />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<
+// @ts-ignore
+        Signup />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

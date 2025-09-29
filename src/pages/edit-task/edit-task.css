@@ -46,7 +46,7 @@
   justify-content: space-between;
 }
 
-.edit-task .time {
+.edit-task .time time{
   font-size: 12px;
   color: #4876c4;
 }
@@ -86,6 +86,52 @@
   padding-right: 19px;
   color: rgb(237, 181, 181);
 }
+
+
+
+.edit-task .add-new-task {
+  display: flex;
+  align-items: center;           
+  gap: 10px;
+  padding: 10px 15px;
+  background-color: rgb(65, 71, 84);
+  border-radius: 5px;
+  box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.15); 
+  animation: subtask 1s;
+}
+
+.edit-task input.add-task {
+  margin: 0;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  height: 36px; 
+  font-size: 16px;
+}
+
+
+.edit-task .add,
+.edit-task .cancel {
+  background-color: teal;
+  font-size: 15px;
+  padding: 6px 12px;
+  height: 36px;           
+  line-height: 1;
+  border: none;
+  border-radius: 5px;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes subtask {
+0% {scale: 0;}
+50% { scale: 1.3;}
+100% { scale: 1;}
+}
+
 
 /*------
 3- Add-more BTN && Delete BTN 

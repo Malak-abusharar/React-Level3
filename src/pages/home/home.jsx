@@ -65,6 +65,7 @@ const Home = () => {
       title: taskTitle,
       details: array,
       id: taskId,
+      complete: false,
     });
     // console.log("done")
     setshowLoading(false);

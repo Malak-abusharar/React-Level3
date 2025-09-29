@@ -26,8 +26,8 @@ const AllTasksSection = ({user}) => {
     <section className="all-task flex mtt">
     {value.docs.map((item) => {
       return(
-          <article dir="auto" className="one-task">
-        <Link to="/edit-task">
+          <article key={item.data().id} dir="auto" className="one-task">
+        <Link to={`/edit-task/${item.data().id}`}>
           <h2>{item.data().title}</h2>
           <ul>
             {/* <li>Sub Task</li>
@@ -35,7 +35,7 @@ const AllTasksSection = ({user}) => {
             {item.data().details.map((item,index) => {
               if(index < 2){
               return(
-                <li>{item}</li> 
+                <li key={item}>{item}</li> 
               )
             }else{
               return false

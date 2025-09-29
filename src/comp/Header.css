@@ -82,3 +82,45 @@ transition: all 0.3s ease;
 header {
   animation: down 1s 1;
 }
+
+
+
+.myheader .malak {
+  background-color: teal;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.myheader .malak h1 {
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.myheader .malak h1 a {
+  color: white;
+  text-decoration: none;
+}
+
+.myheader .malak .flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-link {
+  color: white;
+  padding: 8px 15px;
+}
+
+.main-link:hover, .main-link.active {
+  color: cyan;
+  box-shadow: 0 0 5px cyan;
+  border-radius: 5px;
+}
