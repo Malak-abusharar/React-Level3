@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./edit-task.css";
 import { Helmet } from "react-helmet-async";
 import Header from "../../comp/Header";
@@ -8,13 +8,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import TitleSection from "./TitleSection";
 import SubTasksSection from "./SubTasksSection";
 import BtnsSection from "./BtnsSection";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { db } from "../../firebase/config";
-import { arrayRemove, doc, updateDoc } from "firebase/firestore";
+import { arrayRemove, deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 const EditTask = () => {
   const [user, loading, error] = useAuthState(auth);
   let { stringId } = useParams();
+
   // console.log(typeof(id))
   ////////////////
   //1- Title function
@@ -43,8 +44,13 @@ const EditTask = () => {
   };
   ////////////////
   //3- button function
-  const addBtn = (eo) => {};
-  const deleteBtn = (eo) => {};
+  const navigate = useNavigate();
+  const [showData, setshowData] = useState(false);
+  const deleteBtn = async (eo) => {
+    setshowData(true);
+    await deleteDoc(doc(db, user.uid, stringId));
+    navigate("/", { replace: true });
+  };
 
   if (loading) {
     return (
@@ -71,25 +77,33 @@ const EditTask = () => {
           <title>edit task page</title>
         </Helmet>
         <Header />
-        <div className="edit-task">
-          {/* Title */}
-          <TitleSection
-            user={user}
-            stringId={stringId}
-            titleInput={titleInput}
-          />
+        {showData ? (
+          <main>Loading</main>
+        ) : (
+          <div className="edit-task">
+            {/* Title */}
+            <TitleSection
+              user={user}
+              stringId={stringId}
+              titleInput={titleInput}
+            />
 
-          {/* Sub-tasks section */}
-          <SubTasksSection
-            user={user}
-            stringId={stringId}
-            completeCheckbox={completeCheckbox}
-            trashIcon={trashIcon}
-          />
+            {/* Sub-tasks section */}
+            <SubTasksSection
+              user={user}
+              stringId={stringId}
+              completeCheckbox={completeCheckbox}
+              trashIcon={trashIcon}
+            />
 
-          {/* Add-more BTN && Delete BTN */}
-          <BtnsSection user={user} stringId={stringId} />
-        </div>
+            {/* Add-more BTN && Delete BTN */}
+            <BtnsSection
+              user={user}
+              stringId={stringId}
+              deleteBtn={deleteBtn}
+            />
+          </div>
+        )}
 
         <Footer />
       </div>

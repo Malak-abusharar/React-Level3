@@ -28,6 +28,13 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+.home .task-link{
+  /* border: 5px solid red; */
+  display: block;
+  height: 100%;
+
+}
 .home .all-task .one-task {
   border: 2px solid antiquewhite;
   margin: 40px 20px;

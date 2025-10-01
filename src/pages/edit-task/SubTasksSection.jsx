@@ -64,33 +64,36 @@ export default function SubTasksSection({
           })}
         </ul>
         {showAddNewTask && (
-          <div className="add-new-task flex">
+          <form style={{ flexDirection: "row" }} className="add-new-task flex">
             <input
+              value={subTaskk}
               onChange={(eo) => {
                 setsubTaskk(eo.target.value);
               }}
               className="add-task"
             />
             <button
-              onClick={async () => {
+              onClick={async (eo) => {
+                eo.preventDefault();
+                setsubTaskk("");
                 await updateDoc(doc(db, user.uid, stringId), {
                   details: arrayUnion(subTaskk),
                 });
-                setsubTaskk("");
               }}
               className="add"
             >
               Add
             </button>
             <button
-              onClick={() => {
+              onClick={(eo) => {
+                eo.preventDefault();
                 setshowAddNewTask(false);
               }}
               className="cancel"
             >
               Cancle
             </button>
-          </div>
+          </form>
         )}
 
         <div className="center mtt">

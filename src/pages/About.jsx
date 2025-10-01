@@ -2,7 +2,8 @@
 import Header from "../comp/Header";
 import Footer from "../comp/Footer";
 import { Helmet } from "react-helmet-async";
-import { useEffect } from "react";
+// import {useRef } from "react";
+import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
@@ -11,7 +12,7 @@ const About = () => {
   // const [array, setArray] = useState(["html","css","js"]);
 
   const navigate = useNavigate();
-
+// const inputElement = useRef(null);
   useEffect(() => {
     if (!user && !loading) {
       navigate("/");
@@ -62,6 +63,14 @@ const About = () => {
             {/* <h3>html</h3>
     <h3>css</h3>
     <h3>js</h3> */}
+
+    {/* useRef */}
+    {/* <button onClick={() => {
+inputElement.current.focus()
+    }
+    }
+     className="delete">click</button>
+    <input ref={inputElement} type="text" id="a" className="b"/> */}
           </main>
           <Footer />
         </div>

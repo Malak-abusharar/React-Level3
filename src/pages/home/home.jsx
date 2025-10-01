@@ -38,8 +38,8 @@ const Home = () => {
   //Function of model
   const addBTN = (eo) => {
     eo.preventDefault();
-    if(!array.includes(subTask)){
-    array.push(subTask);
+    if (!array.includes(subTask)) {
+      array.push(subTask);
     }
     console.log(array);
     setsubTask("");
@@ -150,18 +150,8 @@ const Home = () => {
           </Helmet>
           <Header />
           <main className="home">
-            {/* Option (fitered data) */}
-            <section className="parent-of-btns mtt flex ">
-              <button>Oldest First</button>
-              <button>Newest first</button>
-              <select id="browers">
-                <option value="aa">All tasks</option>
-                <option value="aa">Completed</option>
-                <option value="aa">Not Completed</option>
-              </select>
-            </section>
             {/* Show all task */}
-  <AllTasksSection user={user}/>
+            <AllTasksSection user={user} />
             {/* Add new task */}
             <section className="mt add-task-btn">
               <button
