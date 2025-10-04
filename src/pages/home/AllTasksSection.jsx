@@ -4,6 +4,7 @@ import { collection, orderBy, query, where } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase/config";
 import Moment from "react-moment";
+import { useTranslation } from "react-i18next";
 
 const AllTasksSection = ({ user }) => {
   // const [value, loading, error] =
@@ -22,7 +23,7 @@ const AllTasksSection = ({ user }) => {
   const [value, loading, error] = useCollection(iniatialData);
   const [isFullOpacity, setisFullOpacity] = useState(false);
   const [selectValue, setselectValue] = useState("aa");
-
+  const { i18n } = useTranslation();
   if (loading) {
     return (
       <main className="load">
@@ -53,7 +54,9 @@ const AllTasksSection = ({ user }) => {
                   );
                 }}
               >
-                Newest First
+                {i18n.language === "ar" && "الأحدث أولاً"}
+                {i18n.language === "en" && "Newest First"}
+                {i18n.language === "fr" && "Les plus récents en premier"}
               </button>
               <button
                 style={{ opacity: isFullOpacity ? "0.3" : "1" }}
@@ -64,12 +67,14 @@ const AllTasksSection = ({ user }) => {
                   );
                 }}
               >
-                Oldest first
+                {i18n.language === "ar" && "الأقدم أولاً"}
+                {i18n.language === "en" && "Oldest First"}
+                {i18n.language === "fr" && "Les plus anciens d'abord"}
               </button>
             </div>
           )}
           <select
-          style={{alignSelf:"flex-end"}}
+            style={{ alignSelf: "flex-end" }}
             value={selectValue}
             onChange={(eo) => {
               if (eo.target.value === "aa") {
@@ -85,9 +90,21 @@ const AllTasksSection = ({ user }) => {
               }
             }}
           >
-            <option value="aa">All tasks</option>
-            <option value="bb">Completed</option>
-            <option value="cc">Not Completed</option>
+            <option value="aa"> 
+              {i18n.language === "ar" && "جميع المهام"}
+                {i18n.language === "en" && "All Tasks"}
+                {i18n.language === "fr" && "Toutes les tâches"}
+                </option>
+            <option value="bb">
+              {i18n.language === "ar" && "المكتملة"}
+                {i18n.language === "en" && "Completed"}
+                {i18n.language === "fr" && "terminée"}
+            </option>
+            <option value="cc">
+                {i18n.language === "ar" && "الغير مكتملة"}
+                {i18n.language === "en" && "Not Completed"}
+                {i18n.language === "fr" && "Non terminé"}
+            </option>
           </select>
         </section>
         <section className="all-task flex mtt">

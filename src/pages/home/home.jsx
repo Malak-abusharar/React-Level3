@@ -12,6 +12,7 @@ import "./home.css";
 import { doc, setDoc } from "firebase/firestore";
 import HomeModel from "./HomeModel";
 import AllTasksSection from "./AllTasksSection";
+import { useTranslation } from "react-i18next";
 const Home = () => {
   // console.log(typeof(new Date().getTime()))
 
@@ -33,6 +34,8 @@ const Home = () => {
   const [taskTitle, settaskTitle] = useState("");
   const [showLoading, setshowLoading] = useState(false);
   const [showMessge, setshowMessge] = useState(false);
+    const { i18n } = useTranslation();
+  
 
   //------------------
   //Function of model
@@ -154,12 +157,15 @@ const Home = () => {
             <AllTasksSection user={user} />
             {/* Add new task */}
             <section className="mt add-task-btn">
-              <button
+              <button dir="auto"
                 onClick={() => {
                   setshowModel(true);
                 }}
               >
-                Add New Task <i className="fas fa-plus"></i>
+                {i18n.language === "ar" && "إضافة مهمة جديدة"}
+                {i18n.language === "en" && "Add new task"}
+                {i18n.language === "fr" && "Ajouter une nouvelle tâche"}
+                <i className="fas fa-plus"></i>
               </button>
             </section>
             {showModel && (
