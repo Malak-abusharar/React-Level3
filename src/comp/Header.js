@@ -6,10 +6,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
 import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "i18n";
 const Header = () => {
   const [user] = useAuthState(auth);
   const { theme, changeTheme } = useContext(DataContext);
-
+const { t} = useTranslation();
   return (
     <div className="myheader">
       <header className="hide-when-mobile malak">
@@ -26,19 +28,38 @@ const Header = () => {
         </button>
         <ul className="flex">
           <li className="main-list lang">
-            <p>Languge</p>
+            <p>    {t(`lang`)}</p>
             <ul className="lang-box">
-              <li dir="rtl">
+              <li onClick={() => {
+                // @ts-ignore
+                i18n.changeLanguage("ar")
+              }
+              }
+              dir="rtl">
                 <p>العربية</p>
-              {false && <i className="fa-solid fa-check"></i>}  
+              {i18n.
+// @ts-ignore
+              language ==="ar" && <i className="fa-solid fa-check"></i>}  
               </li>
-              <li>
+              <li  onClick={() => {
+                // @ts-ignore
+                i18n.changeLanguage("en")
+              }
+              } >
                 <p>English</p>
-              {true && <i className="fa-solid fa-check"></i>}  
+              {i18n.
+// @ts-ignore
+              language ==="en" && <i className="fa-solid fa-check"></i>}  
               </li>
-              <li>
+              <li   onClick={() => {
+                // @ts-ignore
+                i18n.changeLanguage("fr")
+              }
+              }>
                 <p>French</p>
-              {false && <i className="fa-solid fa-check"></i>}  
+              {i18n.
+// @ts-ignore
+              language ==="fr" && <i className="fa-solid fa-check"></i>}  
               </li>
             </ul>
           </li>
@@ -72,7 +93,8 @@ const Header = () => {
               }}
             >
               <NavLink className="main-link" to="/signin">
-                Sign out
+                {/* Sign out */}
+                {t(`signout`)}
               </NavLink>
             </li>
           )}
@@ -80,7 +102,7 @@ const Header = () => {
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/about">
-                About
+                 {t(`about`)}
               </NavLink>
             </li>
           )}
@@ -88,7 +110,7 @@ const Header = () => {
           {user && (
             <li className="main-list">
               <NavLink className="main-link" to="/profile">
-                Profile
+                  {t(`account`)}
               </NavLink>
             </li>
           )}
