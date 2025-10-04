@@ -69,6 +69,7 @@ const AllTasksSection = ({ user }) => {
             </div>
           )}
           <select
+          style={{alignSelf:"flex-end"}}
             value={selectValue}
             onChange={(eo) => {
               if (eo.target.value === "aa") {

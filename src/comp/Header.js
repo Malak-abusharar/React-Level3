@@ -25,6 +25,23 @@ const Header = () => {
           {theme}
         </button>
         <ul className="flex">
+          <li className="main-list lang">
+            <p>Languge</p>
+            <ul className="lang-box">
+              <li dir="rtl">
+                <p>العربية</p>
+              {false && <i className="fa-solid fa-check"></i>}  
+              </li>
+              <li>
+                <p>English</p>
+              {true && <i className="fa-solid fa-check"></i>}  
+              </li>
+              <li>
+                <p>French</p>
+              {false && <i className="fa-solid fa-check"></i>}  
+              </li>
+            </ul>
+          </li>
           {!user && (
             <li className="main-list">
               <NavLink className="main-link" to="/Signup">
@@ -77,7 +94,6 @@ const Header = () => {
           )}
         </ul>
       </header>
-
     </div>
   );
 };

@@ -38,6 +38,8 @@ const [user, loading, error] = useAuthState(auth);
                 .then((userCredential) => {
                   // Signed up
                   const user = userCredential.user;
+                          console.log(user);
+
                   console.log("doneeeee");
 sendEmailVerification(auth.currentUser)
   .then(() => {

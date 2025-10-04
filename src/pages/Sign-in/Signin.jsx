@@ -25,7 +25,7 @@ const Signin = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // ...
+        console.log(user);
         console.log("doneeee");
         navigate("/");
       })
@@ -68,7 +68,7 @@ const Signin = () => {
         console.log("send email");
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
       });
