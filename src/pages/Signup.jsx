@@ -68,6 +68,9 @@ sendEmailVerification(auth.currentUser)
                     case "auth/invalid-email":
                       setfirebaseError("Wrong Email");
                       break;
+                        case "auth/operation-not-allowed":
+                      setfirebaseError("You can not create new account!");
+                      break;
                     case "auth/user-not-found":
                       setfirebaseError("Wrong Email");
                       break;
@@ -172,7 +175,7 @@ if(!user){
           <p className="account">
             Already have an account <Link to="/Signin">Sign in</Link>
           </p>
-          {hasError && <p>{firebaseError}</p>}
+          {hasError && <h6>{firebaseError}</h6>}
         </form>
       </main>
 
